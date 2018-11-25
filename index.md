@@ -11,7 +11,7 @@ layout: home
 ## Authentication with Github
 
 
-Following steps are required for Authenticating.
+Following steps are required.
 
 ### Configuration Github
 
@@ -35,4 +35,4 @@ Finish by clicking Register application.
 more Details here: [Jenkins wiki](https://wiki.jenkins.io/display/JENKINS/Github+OAuth+Plugin)
 
 
-# Docker Jenkins Interaction
+# Docker Jenkins Integration
