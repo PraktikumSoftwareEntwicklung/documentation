@@ -5,8 +5,7 @@
 layout: home
 ---
 
-
-
+# Github Jenkins Integration
 
 ## Authentication with Github
 
