@@ -11,7 +11,7 @@ layout: home
 ## Authentication with Github
 
 
-Following steps are required.
+Following steps are required for Authenticating.
 
 ### Configuration Github
 
