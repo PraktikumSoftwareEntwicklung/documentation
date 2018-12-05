@@ -2,7 +2,6 @@
 layout: category
 title: Github Jenkins Integration
 ---
-# Github Jenkins Integration
 
 ## Authentication with Github
 
