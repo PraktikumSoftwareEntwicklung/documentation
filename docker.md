@@ -1,5 +1,5 @@
 ---
-layout: index
+layout: category
 title: Docker Jenkins Integration
 ---
 
