@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Main
+title: Github Configuration
 ---
 
 # Github Configuration
