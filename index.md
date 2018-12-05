@@ -1,5 +1,5 @@
 ---
-layout: home
+layout: category
 title: Documentation for Continous Integration
 ---
 
