@@ -1,10 +1,7 @@
 ---
 layout: category
-title: Docker Jenkins Integration
+title: Einrichtung Dockercontainer & Jenkins
 ---
-
-# Einrichtung der Dockercontainer & Jenkins
-
 ## Erstellen des Dockercontainers für Jenkins
 
 ### Erzeugung eines neuen Dockerimage aus einem Dockerfile
