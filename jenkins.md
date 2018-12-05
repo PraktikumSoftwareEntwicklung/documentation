@@ -27,3 +27,5 @@ Finish by clicking Register application.
 ![Screenshot](img/accessControlJenkins.PNG)
 
 more Details here: [Jenkins wiki](https://wiki.jenkins.io/display/JENKINS/Github+OAuth+Plugin)
+
+## Plugin Blue Ocean Configuration
