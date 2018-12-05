@@ -41,6 +41,10 @@ Finish by clicking Register application.
 
 more Details here: [Jenkins wiki](https://wiki.jenkins.io/display/JENKINS/Github+OAuth+Plugin)
 
+---
+layout: index
+title: Docker
+---
 
 # Einrichtung der Dockercontainer & Jenkins
 
