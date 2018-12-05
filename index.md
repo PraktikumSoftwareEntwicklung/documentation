@@ -1,6 +1,4 @@
 ---
-title: documentation
-layout: post
 ---
 
 # Github Jenkins Integration
