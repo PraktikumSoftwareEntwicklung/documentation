@@ -1,4 +1,6 @@
 ---
+layout: page
+title: Main
 ---
 
 # Github Configuration
