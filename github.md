@@ -3,8 +3,6 @@ layout: category
 title: Github Configuration
 ---
 
-# Github Configuration
-
 ## Branch Protection in a repository
 
 Go to the main page of the repository > Settings > Branches > Add Rule.
