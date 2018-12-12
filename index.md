@@ -10,8 +10,14 @@ What to achieve
 * comit on branch from non trusted
 * comit on branch from organisation member/ collaborator
 
+1.1. pull request/fork
+
 * currently no pull request from someone who has no write access, no fork
 * fork + pull request and changed jenkins file leads to merge conflict which needs to be solved by someone trusted
+
+1.2. master/ release branch
+
+* more specific information needed
 
 2. manage User Roles in Jenkins according to Github Roles
 * View Build (Log, Artefacts, Test-Results): everyone - check
