@@ -5,7 +5,7 @@ layout: category
 What to achieve
 
 1. protect Jenkins File, no unauthorized change - possbile scenarios
-* pull request  from non trusted
+* pull request  from non trusted -  only jenkfile change needs merge aproval
 * pull request from organisation member/ collaborator
 * comit on branch from non trusted
 * comit on branch from organisation member/ collaborator
