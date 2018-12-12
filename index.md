@@ -11,9 +11,9 @@ What to achieve
 * comit on branch from organisation member/ collaborator
 
 2. manage User Roles in Jenkins according to Github Roles
-* Github Owner is Jenkins Administrator
 * View Build (Log, Artefacts, Test-Results): everyone
 * Start Build: Everyone with write access to repo
+* Edit Build: Admninstrator
 * Release Build: Everyone with write acces to repo / Administrator
 
 3. run job for each pull request and commit 
