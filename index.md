@@ -13,7 +13,7 @@ What to achieve
 2. manage User Roles in Jenkins according to Github Roles
 * View Build (Log, Artefacts, Test-Results): everyone
 * Start Build: Everyone with write access to repo
-* Edit Build: Admninstrator
+* Iniciate/Edit Build: Admninstrator
 * Release Build: Everyone with write acces to repo / Administrator
 
 3. run job for each pull request and commit 
