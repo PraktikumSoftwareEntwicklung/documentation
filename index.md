@@ -10,13 +10,16 @@ What to achieve
 * comit on branch from non trusted
 * comit on branch from organisation member/ collaborator
 
-currently no pull request from someone who has no write access
+* currently no pull request from someone who has no write access, no fork
+* fork + pull request and changed jenkins file leads to merge conflict which needs to be solved by someone trusted
 
 2. manage User Roles in Jenkins according to Github Roles
 * View Build (Log, Artefacts, Test-Results): everyone - check
 * Start Build: Everyone with write access to repo - check
 * Iniciate/Edit Build: Admninstrator - check
 * Release Build: Everyone with write acces to repo / <s>Administrator</s> -  check
+
+no automatic admin setup
 
 3. run job for each pull request and commit 
 
