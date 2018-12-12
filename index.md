@@ -16,3 +16,4 @@ What to achieve
   §  Release Build: Everyone with write acces to repo / Administrator
 
 * run job for each pull request and commit 
+* use of shared library for jenkins pipeline configuration
