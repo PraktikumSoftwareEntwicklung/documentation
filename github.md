@@ -2,6 +2,14 @@
 layout: category
 title: Github Configuration
 ---
+## Enabling Oauth Login
+
+* Go to the Github Page in settings > OAuth Apps > New OAuth App'. The values for application name, homepage URL, or application description don't matter. They can be customized however desired.
+
+* However, the authorization callback URL takes a specific value. It must be https://jenkins.example.com/securityRealm/finishLogin where jenkins.example.com is the location of the Jenkins server.           
+
+* The important part of the callback URL is /securityRealm/finishLogin
+Finish by clicking Register application and you are done.
 
 ## Webhook
 
