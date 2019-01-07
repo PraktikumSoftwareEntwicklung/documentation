@@ -32,3 +32,7 @@ no automatic admin setup
 3. run job for each pull request and commit 
 
 4. use of shared library for jenkins pipeline configuration
+
+Open Questions
+* Credentials to detect pull requests
+
