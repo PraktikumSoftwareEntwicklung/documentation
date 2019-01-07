@@ -1,9 +1,8 @@
 ---
 layout: category
-title: Project Goals
 ---
 
-
+### Project Goals
 
 1. protect Jenkins File, no unauthorized change 
 * pull request  from non trusted - needs approval, not built
