@@ -3,7 +3,11 @@ layout: category
 title: Github Configuration
 ---
 
-## Setup Github Server 
+## Webhook
+
+To let Jenkins know of a new pull requets or commit you need to setup a webhook. 
+In your Organization go to Settings > Webhooks > Add webhook.
+Add a webhook with the the Payload URL of your Jenkins Instance and leave settings as they are.
 
 ## Branch Protection in a repository
 
