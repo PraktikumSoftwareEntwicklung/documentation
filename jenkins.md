@@ -9,6 +9,10 @@ title: Github Jenkins Integration
 * GitHub Integration plugin (version 0.2.4) - enabling the automated CI workflow
 * Blue Ocean (version 1.9.0) - for a modern UI
 
+## Add Github Organization
+
+Go to new Item > Github Organization and type in a name. Afterwards fill in all the required fields as shown below. Be aware not all fields are mentioned only the not obvious ones.
+
 ## Setup Github Server
 
 Go to Manage Jenkins > Configure Systema and add the required Github Server. As Credentials put in a generated access token from a Github User which is an Admin. This is necessary in order to be able to manage the webhooks.
