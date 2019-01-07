@@ -10,6 +10,8 @@ What to achieve
 * comit on branch from non trusted
 * comit on branch from organisation member/ collaborator
 
+pull request is only built from fork with someone who has write permissions
+
 1.1. pull request/fork
 
 * currently no pull request from someone who has no write access, no fork
