@@ -18,7 +18,7 @@ Go to Manage Jenkins > Configure Systema and add the required Github Server. As 
 ## Configuration Oauth Login and Access Control
 
 Go to manage Jenkins > Configure Global Security and activate the 'Global GitHub OAuth' Settings
-Put in your values and credentials as seen in the screenshot
+Put in your values and credentials as seen in the screenshot. Do not forget to set an Admin!
 
 ![Screenshot](img/accessControlJenkins.PNG)
 
