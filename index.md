@@ -21,6 +21,6 @@ layout: category
 5. Protect built by running in a docker container
 
 Open questions
- * pull request to release/master branch? which jenkins file? 
+ * jenkins file used from commit - sufficent protection?
 
 
