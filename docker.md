@@ -109,7 +109,7 @@ pipeline {
     agent {
         docker {
             image 'custom_maven:latest'
-            args '-v m2-voluke:/home/jenkinsbuild/.m2 -m 4G'
+            args '-v m2-volume:/home/jenkinsbuild/.m2 -m 4G'
         }
     }
     options {
@@ -125,6 +125,6 @@ pipeline {
 }
 ```
 
-Bei den Argumenten für den Start den Docker containers ist nach dem Einbinden des Docker volumes noch eine Beschränkung des Speichers eingestellt. Der Container darf in diesem Fall nur maximal 4 Gigabyte Hauptspeicher benutzen. Eine Beschränkung der CPU-Last ist ebenfalls möglich mit der Option '-c xx'. Dabei wird eine Zahl mitgegeben, anhand derer relativ die Last verteilt wird. Hat zum Beispiel ein Container -c 20 und ein anderer -c 80 als Option, dann kann der zweite Container 80% der CPU-Ressourcen nutzen.
+Bei den Argumenten für den Start des Docker containers ist nach dem Einbinden des Docker volumes noch eine Beschränkung des Speichers eingestellt. Der Container darf in diesem Fall nur maximal 4 Gigabyte Hauptspeicher benutzen. Eine Beschränkung der CPU-Last ist ebenfalls möglich mit der Option '-c xx'. Dabei wird eine Zahl mitgegeben, anhand derer relativ die Last verteilt wird. Hat zum Beispiel ein Container -c 20 und ein anderer -c 80 als Option, dann kann (wenn beide Container ausgelastet sind) der zweite Container nur 80% der CPU-Ressourcen nutzen.
 
 Bei den Optionen wurde hier ein timeout von 30 Minuten für die gesamte Pipeline festgelegt. Timeouts um einzelne stages ist ebenfalls möglich.
