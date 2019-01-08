@@ -99,3 +99,32 @@ Das Einbinden des volumes verläuft analog wie bei einem Ordner:
 ```
 -v new_volume:/home/jenkinsbuild/volume_folder
 ```
+
+## Erzeugung des Jenkinsfile
+
+Beispielhaftes Jenkinsfile, welches ein wie oben beschriebenes Docker volume nutzt:
+
+```Jenkinsfile
+pipeline {
+    agent {
+        docker {
+            image 'custom_maven:latest'
+            args '-v m2-voluke:/home/jenkinsbuild/.m2 -m 4G'
+        }
+    }
+    options {
+        timeout(time: 30, unit: 'MINUTES')
+    }
+    stages {
+        stage('Build') {
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+    }
+}
+```
+
+Bei den Argumenten für den Start den Docker containers ist nach dem Einbinden des Docker volumes noch eine Beschränkung des Speichers eingestellt. Der Container darf in diesem Fall nur maximal 4 Gigabyte Hauptspeicher benutzen. Eine Beschränkung der CPU-Last ist ebenfalls möglich mit der Option '-c xx'. Dabei wird eine Zahl mitgegeben, anhand derer relativ die Last verteilt wird. Hat zum Beispiel ein Container -c 20 und ein anderer -c 80 als Option, dann kann der zweite Container 80% der CPU-Ressourcen nutzen.
+
+Bei den Optionen wurde hier ein timeout von 30 Minuten für die gesamte Pipeline festgelegt. Timeouts um einzelne stages ist ebenfalls möglich.
