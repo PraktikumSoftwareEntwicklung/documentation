@@ -4,11 +4,11 @@ title: Setup Dockercontainer & Jenkins
 ---
 Eine deutsche Version ist [hier](docker_de "Einrichtung Dockercontainer & Jenkins").
 
-## Erstellen des Dockercontainers für Jenkins
+## Creation of the dockercontainer for Jenkins
 
-### Erzeugung eines neuen Dockerimage aus einem Dockerfile
+### Generation of a new dockerimage from a dockerfile
 
-Beispielhaftes Dockerfile für einen Container, in dem Jenkins laufen soll:
+Example dockerfile to create a container, in which Jenkins can run:
 
 ```Dockerfile
 FROM jenkins/jenkins:lts
@@ -30,81 +30,81 @@ RUN apt-get update && \
 RUN useradd -M -s /usr/sbin/nologin -u 1500 -G docker $username
 ```
 
-Dabei installiert der erste RUN-Befehl Docker innerhalb des Containers. Zu beachten ist dabei, dass die Dockerversion (hier 18.06.1~ce~3-0~debian) mit der Version vom Server übereinstimmt.
+The first RUN-command installs Docker inside of the container. One must consider that the version of docker (here 18.06.1\~ce\~3-0\~debian) has to match with the version of docker which is installed on the server.
 
-Der zweite RUN-Befehl erzeugt einen Benutzereintrag für den Benutzer mit der ID 1500 und fügt diesen der "docker" Benutzergruppe hinzu. Dies ist notwendig, da ansonsten Jenkins nicht die Rechte hat, einen neuen Dockercontainer zu starten. Die Benutzer-ID wird beim starten des Containers festgelegt und sollte mit der hier angegeben ID übereinstimmen. Der Benutzername ist beliebig und kann, da als ARG definiert, beim Erstellen des Images festgelegt werden, ohne das Dockerfile anzupassen. "jenkinsbuild" ist der Default-Wert, wenn dies nicht gemacht wird. Falls ein Home-Verzeichnis für diesen Benutzer erzeugt werden soll, muss die Option "-m" statt "-M" gewählt werden.
+The second RUN-command creates a new user with the ID 1500 and adds this user to the user group "docker". This is needed so Jenkins has the rights to start a new docker container. The user ID is set at the start of a container and should match with the here defined ID. The username can be chosen freely. Since the name defined via ARG, it is possible to set this name when the image is created without the need to adapt the dockerfile. "jenkinsbuild" is the default value for the username. If there is the need to have a home directory for this user, use the option "-m" instead of "-M".
 
-Die erstellte Datei sollte nur den Namen "Dockerfile" tragen und sich in einem leeren Ordner befinden (dort befindliche Dateien werden standardmäßig in das Image rein kopiert). Zum erstellen des Images wechselt man in diesen Ordner und gibt folgenden Befehl ein (der Punkt am Ende ist der Pfad zum Dockerfile):
+The created file should only have the name "Dockerfile" and exist in an empty folder (any other file which are located in the same folder are copied as a default setting inside of the crated image). To create the image switch to the containing folder und run following command (the dot an the end is the path to the dockerfile):
 
 ```
 docker build -t new_image .
 ```
 
 
-#### Alternative ohne Dockerfile
+#### Alternative without a dockerfile
 
-Ein Image lässt sich auch manuell ohne Dockerfile erstellen. In dem Fall erzeugt und startet man einen Container aus einem Basis-Image (z.B. jenkins/jenkins:lts) und wechselt in diesen mit folgendem Befehl:
+An docker image can be created manually without a dockerfile. In this case create and start a container from an base image (e.g. jenkins/jenkins:lts) and enter this container with the following command:
 
 ```
 docker exec -it -u root jenkins bash
 ```
 
-Statt "root" ist es auch möglich sich als beliebiger Nutzer einzuloggen. Zur Installation von neuer Software ist es meistens aber notwendig, root-Rechte zu besitzen. Nachdem alle Modifizierungen vorgenommen wurden und benötigte Programme installiert wurden, wechselt man mit "exit" wieder auf die Server-Ebene. Dort lässt sich der modifizierte und noch laufende Dockercontainer über folgenden Befehl als neues Image speichern:
+Instead of "root" is is possible to log in as an arbitrary user. But to install new software inside the container it is normally needed to have root permissions. After all modifications are done and needed programs are installed, switch back to server layer with "exit". There the modified and still running docker container can be saved as an new image with the following command:
 
 ```
 docker commit eb6323d17d47  new_containername:latest
 ```
 
-Dabei ist "eb6323d17d47" die ID von dem laufenden Container. Speichert man die Änderungen nicht in einem neuen Image, gehen diese bei Beendigung des Containers verloren.
+"eb6323d17d47" is the ID of the running container. All changes inside of the container are discarded when stopping the container, if they are not saved in a new image.
 
-### Start und Konfiguration von Jenkins
+### Start and configuration of Jenkins
 
-Wenn der Dockercontainer, der Jenkins enthält, gestartet werden soll, muss die Konfiguration angepasst werden, damit die durch Jenkins erstellten Dockercontainer auf der selben Ebene wie Jenkins-Dockercontainer liegen. Läuft die Konfiguration über eine Datei (z.B. /etc/docker/compose/jenkins/docker-compose.yml), muss dort folgender Eintrag eingefügt werden:
+On starting the docker container, which runs Jenkins, a specific configuration is needed, so that docker container, which are created through Jenkins, stay on the same layer, on which the Jenkins container is. If the configuration is inside a file (e.g. /etc/docker/compose/jenkins/docker-compose.yml), is is needed to add the following entry:
 
 ```
 volumes:
     - /var/run/docker.sock:/var/run/docker.sock
 ```
 
-## Zugriff auf Ordner außerhalb des Containers
+## Access of folders outside of the container
 
-Für das Speichern und Laden z.B. des m2-Caches von Maven, ist es notwendig, auf Ordner außerhalb des eigenen Containers zuzugreifen. Gemappt werden diese Ordner beim Start des Containers mit der folgenden Option:
+For saving and loading of e.g. the m2-cache of Maven, it is needed to access folders outside of one's own container. The folders are mapped at the start of the container with the following option:
 
 ```
 -v /home/jenkinsbuild/.m2:/var/maven/
 ```
 
-Wenn dies beim Start des Maven-Dockercontainers innerhalb des Jenkins-Dockercontainers angegeben wird, dann existiert innerhalb des Maven-Dockercontainers der Ordner "/var/maven/", der mit dem außerhalb liegenden Ordner /home/jenkinsbuild/.m2 gemappt ist. Achtung: da, dieser Container auf der selben Ebene liegt, wie der Jenkins-Dockercontainer selber, ist dieser gemappte Order auf Server-Ebene und nicht auf Jenkins-Ebene. Bei diesem Mapping werden die Zugriffsrechte von dem außerhalb liegenden Ordner übernommen. Damit Maven also darauf zugreifen kann, muss vorher in dem Fall auf Server-Ebene dieser Ordner erstellt werden und die Zugriffsrechte festgelegt werden:
+If this option is provided at the start of the Maven docker container inside of the Jenkins docker container, then a folder "/car/maven/" exists inside of the Maven docker container which is mapped to the folder /home/jenkinsbuild/.m which exists outside of this container. Attention: since this container exists on the same layer as the Jenkins docker container, this mapped folder is on the server layer and not on the Jenkins layer. With this mapping the permissions of the outside existing folder are inherited. To enable Maven to access this folder, is is needed to create the mapped folder on the server layer and give the needed permissions:
 
 ```bash
 chown -R 1500 /home/jenkinsbuild/.m2
 ```
 
-### Nutzung von Docker volumes
+### Use of Docker volumes
 
-Alternativ ist es möglich ein Docker volume statt einem Ordner in den Container zu mappen. Dazu muss als erstes ein solches volume erstellt werden:
+As an alternative it is possible to map Docker volumes instead of folders inside of a container. To do this, it is first needed to create such a volume:
 
 ```
 docker volume create new_volume
 ```
 
-Mit den folgenden zwei Befehlen lassen sich alle volumes anzeigen und einzelne genauer betrachten, um z.B. den Dateipfad des volumes herauszufinden:
+With the following two commands it is possible to list all volumes and to inspect volumes to e.g. get the file path of the location of a volume:
 
 ```
 docker volume ls
 docker volume inspect new_volume
 ```
 
-Letzteres wird benötigt, da es auch bei dieser Variante von Nöten ist, die Zugriffsrechte festzulegen, damit innerhalb des Containers auf das volume schreibend zugegriffen werden kann.
-Das Einbinden des volumes verläuft analog wie bei einem Ordner:
+The latter is needed, because with this variant it is also needed to set the permission to be able to write to the volume inside of a container.
+The integration of the volume into the container is analogous to the variant with the folder:
 
 ```
 -v new_volume:/home/jenkinsbuild/volume_folder
 ```
 
-## Erzeugung des Jenkinsfile
+## Generation of the Jenkinsfile
 
-Beispielhaftes Jenkinsfile, welches ein wie oben beschriebenes Docker volume nutzt:
+Exemplary Jenkinsfile, which uses a docker volume like described above:
 
 ```Jenkinsfile
 pipeline {
@@ -127,6 +127,6 @@ pipeline {
 }
 ```
 
-Bei den Argumenten für den Start des Docker containers ist nach dem Einbinden des Docker volumes noch eine Beschränkung des Speichers eingestellt. Der Container darf in diesem Fall nur maximal 4 Gigabyte Hauptspeicher benutzen. Eine Beschränkung der CPU-Last ist ebenfalls möglich mit der Option '-c xx'. Dabei wird eine Zahl mitgegeben, anhand derer relativ die Last verteilt wird. Hat zum Beispiel ein Container -c 20 und ein anderer -c 80 als Option, dann kann (wenn beide Container ausgelastet sind) der zweite Container nur 80% der CPU-Ressourcen nutzen.
+Within the arguments for the start of the docker container after mapping the docker volume there is a limitation of the memory set. In this case the container can only use 4 gigabyte of memory. A limitation of the CPU is also possible with option '-c xx'. With this option is a number provided, by which the relative usage is distributed. If a container has e.g. the option -c 20 and another has the option -c 80, than (if both container working to capacity) the second container can only use 80% of the CPU resources.
 
-Bei den Optionen wurde hier ein timeout von 30 Minuten für die gesamte Pipeline festgelegt. Timeouts um einzelne stages ist ebenfalls möglich.
+In this example file an option is set, to have a timeout for the whole pipeline of 30 minutes. It is also possible to create separate timeouts for the individual stages.
