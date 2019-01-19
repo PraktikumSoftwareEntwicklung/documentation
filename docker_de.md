@@ -30,7 +30,7 @@ RUN apt-get update && \
 RUN useradd -M -s /usr/sbin/nologin -u 1500 -G docker $username
 ```
 
-Dabei installiert der erste RUN-Befehl Docker innerhalb des Containers. Zu beachten ist dabei, dass die Dockerversion (hier 18.06.1~ce~3-0~debian) mit der Version vom Server übereinstimmt.
+Dabei installiert der erste RUN-Befehl Docker innerhalb des Containers. Zu beachten ist dabei, dass die Dockerversion (hier 18.06.1\~ce\~3-0\~debian) mit der Version vom Server übereinstimmt.
 
 Der zweite RUN-Befehl erzeugt einen Benutzereintrag für den Benutzer mit der ID 1500 und fügt diesen der "docker" Benutzergruppe hinzu. Dies ist notwendig, da ansonsten Jenkins nicht die Rechte hat, einen neuen Dockercontainer zu starten. Die Benutzer-ID wird beim starten des Containers festgelegt und sollte mit der hier angegeben ID übereinstimmen. Der Benutzername ist beliebig und kann, da als ARG definiert, beim Erstellen des Images festgelegt werden, ohne das Dockerfile anzupassen. "jenkinsbuild" ist der Default-Wert, wenn dies nicht gemacht wird. Falls ein Home-Verzeichnis für diesen Benutzer erzeugt werden soll, muss die Option "-m" statt "-M" gewählt werden.
 
