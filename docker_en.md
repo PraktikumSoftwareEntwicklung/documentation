@@ -2,6 +2,8 @@
 layout: category
 title: Setup Dockercontainer & Jenkins
 ---
+Eine deutsche Version ist [hier](docker_de "Einrichtung Dockercontainer & Jenkins").
+
 ## Erstellen des Dockercontainers für Jenkins
 
 ### Erzeugung eines neuen Dockerimage aus einem Dockerfile

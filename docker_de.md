@@ -2,7 +2,7 @@
 layout: category
 title: Einrichtung Dockercontainer & Jenkins
 ---
-An English version is [here](docker_en.md "here").
+An English version is [here](docker_en "Setup Dockercontainer & Jenkins").
 
 ## Erstellen des Dockercontainers für Jenkins
 
