@@ -106,7 +106,7 @@ Das Einbinden des volumes verläuft analog wie bei einem Ordner:
 
 Beispielhaftes Jenkinsfile, welches ein wie oben beschriebenes Docker volume nutzt:
 
-```Jenkinsfile
+```shell
 pipeline {
     agent {
         docker {
