@@ -10,7 +10,7 @@ Eine deutsche Version ist [hier](docker_de "Einrichtung Dockercontainer & Jenkin
 
 Example dockerfile to create a container, in which Jenkins can run:
 
-```Dockerfile
+```dockerfile
 FROM jenkins/jenkins:lts
 ARG username=jenkinsbuild
 USER root
@@ -36,7 +36,7 @@ The second RUN-command creates a new user with the ID 1500 and adds this user to
 
 The created file should only have the name "Dockerfile" and exist in an empty folder (any other file which are located in the same folder are copied as a default setting inside of the crated image). To create the image switch to the containing folder und run following command (the dot an the end is the path to the dockerfile):
 
-```
+```shell
 docker build -t new_image .
 ```
 
@@ -45,13 +45,13 @@ docker build -t new_image .
 
 An docker image can be created manually without a dockerfile. In this case create and start a container from an base image (e.g. jenkins/jenkins:lts) and enter this container with the following command:
 
-```
+```shell
 docker exec -it -u root jenkins bash
 ```
 
 Instead of "root" is is possible to log in as an arbitrary user. But to install new software inside the container it is normally needed to have root permissions. After all modifications are done and needed programs are installed, switch back to server layer with "exit". There the modified and still running docker container can be saved as an new image with the following command:
 
-```
+```shell
 docker commit eb6323d17d47  new_containername:latest
 ```
 
@@ -61,7 +61,7 @@ docker commit eb6323d17d47  new_containername:latest
 
 On starting the docker container, which runs Jenkins, a specific configuration is needed, so that docker container, which are created through Jenkins, stay on the same layer, on which the Jenkins container is. If the configuration is inside a file (e.g. /etc/docker/compose/jenkins/docker-compose.yml), is is needed to add the following entry:
 
-```
+```shell
 volumes:
     - /var/run/docker.sock:/var/run/docker.sock
 ```
@@ -70,13 +70,13 @@ volumes:
 
 For saving and loading of e.g. the m2-cache of Maven, it is needed to access folders outside of one's own container. The folders are mapped at the start of the container with the following option:
 
-```
+```shell
 -v /home/jenkinsbuild/.m2:/var/maven/
 ```
 
 If this option is provided at the start of the Maven docker container inside of the Jenkins docker container, then a folder "/car/maven/" exists inside of the Maven docker container which is mapped to the folder /home/jenkinsbuild/.m which exists outside of this container. Attention: since this container exists on the same layer as the Jenkins docker container, this mapped folder is on the server layer and not on the Jenkins layer. With this mapping the permissions of the outside existing folder are inherited. To enable Maven to access this folder, is is needed to create the mapped folder on the server layer and give the needed permissions:
 
-```bash
+```shell
 chown -R 1500 /home/jenkinsbuild/.m2
 ```
 
@@ -84,13 +84,13 @@ chown -R 1500 /home/jenkinsbuild/.m2
 
 As an alternative it is possible to map Docker volumes instead of folders inside of a container. To do this, it is first needed to create such a volume:
 
-```
+```shell
 docker volume create new_volume
 ```
 
 With the following two commands it is possible to list all volumes and to inspect volumes to e.g. get the file path of the location of a volume:
 
-```
+```shell
 docker volume ls
 docker volume inspect new_volume
 ```
@@ -98,7 +98,7 @@ docker volume inspect new_volume
 The latter is needed, because with this variant it is also needed to set the permission to be able to write to the volume inside of a container.
 The integration of the volume into the container is analogous to the variant with the folder:
 
-```
+```shell
 -v new_volume:/home/jenkinsbuild/volume_folder
 ```
 
