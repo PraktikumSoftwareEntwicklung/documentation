@@ -12,3 +12,11 @@ The Jenkins file itself is in the Github repository and is protected from unauth
 
 
 
+| Attack Scenario     | Protection |
+| -----------      | ----------- |
+| memory overflow     | cache is filled once and then ready only     |
+| server overload  | limitation of docker container and timeout       |
+| sensitive data (keys, passwords, ...)  | protected by jenkins        |
+| unportected access to docker container  | container does not have root rights and file system is not mounted  |
+| corrupt m2 cache  | cache is filled once and then ready only and seperate cache for each repo   |
+| change build coniguration  | protected by jenkins        |
