@@ -10,10 +10,5 @@ The goal is to have all the files and build logs publicy available but protect t
 
 The Jenkins file itself is in the Github repository and is protected from unauthorized change and usage from non trusted users.
 
-```ruby
-require 'redcarpet'
-markdown = Redcarpet.new("Hello World!")
-puts markdown.to_html
-```
 
 
