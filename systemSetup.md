@@ -69,7 +69,7 @@ You can start docker compose files named `docker-compose.yml` in a folder `/etc/
 Basically, you can use any reverse proxy but we decided for [Traefik](https://traefik.io/) because of its native docker support.
 
 * Decide for a folder holding the configuration files. We will use `/media/data/traefik` in this example.
-* Create an empty file `acme.json` in the configuration folder
+* Create an empty file `acme.json` in the configuration folder and set the chmod to 600
 * Create a configuration file `traefik.toml` in the configuration folder containing the following contents (replace domain and email)
 ```
 logLevel = "INFO"
