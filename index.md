@@ -2,7 +2,7 @@
 layout: category
 ---
 
-### Continous Integration for an Open Source Project
+## Continous Integration for an Open Source Project
 
 This website is dedicated to describe a continous integration concept for an Open Source project using Github and Jenkins. Each commit and pull request is being build, the status is visible in Github and can be verified immediatly.
 
