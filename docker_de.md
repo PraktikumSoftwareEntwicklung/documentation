@@ -36,7 +36,7 @@ Der zweite RUN-Befehl erzeugt einen Benutzereintrag für den Benutzer mit der ID
 
 Die erstellte Datei sollte nur den Namen "Dockerfile" tragen und sich in einem leeren Ordner befinden (dort befindliche Dateien werden standardmäßig in das Image rein kopiert). Zum erstellen des Images wechselt man in diesen Ordner und gibt folgenden Befehl ein (der Punkt am Ende ist der Pfad zum Dockerfile):
 
-```
+```shell
 docker build -t new_image .
 ```
 
@@ -45,13 +45,13 @@ docker build -t new_image .
 
 Ein Image lässt sich auch manuell ohne Dockerfile erstellen. In dem Fall erzeugt und startet man einen Container aus einem Basis-Image (z.B. jenkins/jenkins:lts) und wechselt in diesen mit folgendem Befehl:
 
-```
+```shell
 docker exec -it -u root jenkins bash
 ```
 
 Statt "root" ist es auch möglich sich als beliebiger Nutzer einzuloggen. Zur Installation von neuer Software ist es meistens aber notwendig, root-Rechte zu besitzen. Nachdem alle Modifizierungen vorgenommen wurden und benötigte Programme installiert wurden, wechselt man mit "exit" wieder auf die Server-Ebene. Dort lässt sich der modifizierte und noch laufende Dockercontainer über folgenden Befehl als neues Image speichern:
 
-```
+```shell
 docker commit eb6323d17d47  new_containername:latest
 ```
 
@@ -61,7 +61,7 @@ Dabei ist "eb6323d17d47" die ID von dem laufenden Container. Speichert man die �
 
 Wenn der Dockercontainer, der Jenkins enthält, gestartet werden soll, muss die Konfiguration angepasst werden, damit die durch Jenkins erstellten Dockercontainer auf der selben Ebene wie Jenkins-Dockercontainer liegen. Läuft die Konfiguration über eine Datei (z.B. /etc/docker/compose/jenkins/docker-compose.yml), muss dort folgender Eintrag eingefügt werden:
 
-```
+```shell
 volumes:
     - /var/run/docker.sock:/var/run/docker.sock
 ```
@@ -70,13 +70,13 @@ volumes:
 
 Für das Speichern und Laden z.B. des m2-Caches von Maven, ist es notwendig, auf Ordner außerhalb des eigenen Containers zuzugreifen. Gemappt werden diese Ordner beim Start des Containers mit der folgenden Option:
 
-```
+```shell
 -v /home/jenkinsbuild/.m2:/var/maven/
 ```
 
 Wenn dies beim Start des Maven-Dockercontainers innerhalb des Jenkins-Dockercontainers angegeben wird, dann existiert innerhalb des Maven-Dockercontainers der Ordner "/var/maven/", der mit dem außerhalb liegenden Ordner /home/jenkinsbuild/.m2 gemappt ist. Achtung: da, dieser Container auf der selben Ebene liegt, wie der Jenkins-Dockercontainer selber, ist dieser gemappte Order auf Server-Ebene und nicht auf Jenkins-Ebene. Bei diesem Mapping werden die Zugriffsrechte von dem außerhalb liegenden Ordner übernommen. Damit Maven also darauf zugreifen kann, muss vorher in dem Fall auf Server-Ebene dieser Ordner erstellt werden und die Zugriffsrechte festgelegt werden:
 
-```bash
+```shell
 chown -R 1500 /home/jenkinsbuild/.m2
 ```
 
@@ -84,13 +84,13 @@ chown -R 1500 /home/jenkinsbuild/.m2
 
 Alternativ ist es möglich ein Docker volume statt einem Ordner in den Container zu mappen. Dazu muss als erstes ein solches volume erstellt werden:
 
-```
+```shell
 docker volume create new_volume
 ```
 
 Mit den folgenden zwei Befehlen lassen sich alle volumes anzeigen und einzelne genauer betrachten, um z.B. den Dateipfad des volumes herauszufinden:
 
-```
+```shell
 docker volume ls
 docker volume inspect new_volume
 ```
@@ -98,7 +98,7 @@ docker volume inspect new_volume
 Letzteres wird benötigt, da es auch bei dieser Variante von Nöten ist, die Zugriffsrechte festzulegen, damit innerhalb des Containers auf das volume schreibend zugegriffen werden kann.
 Das Einbinden des volumes verläuft analog wie bei einem Ordner:
 
-```
+```shell
 -v new_volume:/home/jenkinsbuild/volume_folder
 ```
 
