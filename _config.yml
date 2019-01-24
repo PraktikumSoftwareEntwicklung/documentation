@@ -2,4 +2,4 @@ remote_theme: fongandrew/hydeout
 url: 'https://praktikumsoftwareentwicklung.github.io'
 baseurl: '/documentation'
 title: 'CI'
-highlighter: rouge
+highlighter: pygments
