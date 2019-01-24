@@ -106,7 +106,7 @@ The integration of the volume into the container is analogous to the variant wit
 
 Exemplary Jenkinsfile, which uses a docker volume like described above:
 
-```Jenkinsfile
+```shell
 pipeline {
     agent {
         docker {
