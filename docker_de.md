@@ -10,7 +10,7 @@ An English version is [here](docker_en "Setup Dockercontainer & Jenkins").
 
 Beispielhaftes Dockerfile für einen Container, in dem Jenkins laufen soll:
 
-```Dockerfile
+```dockerfile
 FROM jenkins/jenkins:lts
 ARG username=jenkinsbuild
 USER root
