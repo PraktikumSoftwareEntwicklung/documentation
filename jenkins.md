@@ -26,7 +26,7 @@ Put in your values and credentials as seen in the screenshot. Do not forget to s
 
 ![Screenshot](img/accessControlJenkins.PNG)
 
-more Details here: [Jenkins wiki](https://wiki.jenkins.io/display/JENKINS/Github+OAuth+Plugin)
+more Details [here](https://wiki.jenkins.io/display/JENKINS/Github+OAuth+Plugin)
 
 ## Project Settings
 
@@ -39,4 +39,12 @@ In your Project go to Configure and the following settings for branch and pull r
 If you want to use a shared Library for your Project go in your Project to configure and set the Pipeline Library Settings.
 
 ![Screenshot](img/pipelineLibraries.PNG)
+
+To use is simply put the library in your jenkinsfile.
+
+```groovy
+@Library('SharedLibrary') _
+buildPipeline() //example call
+```
+more information [here](https://jenkins.io/doc/book/pipeline/shared-libraries/)
 
