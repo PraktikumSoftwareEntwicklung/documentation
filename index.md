@@ -1,26 +1,21 @@
 ---
 layout: category
+title: Continous Integration 
 ---
 
-### Project Goals
+This website is dedicated to describe a continous integration concept for an Open Source project using Github and Jenkins. Each commit and pull request is being build, the status is visible in Github and can be verified immediatly.
 
-1. protect Jenkins File, no unauthorized change 
-* pull request  from non trusted - needs approval, not built
-* pull request from organisation member/ collaborator -  is trusted, therefore built
+The goal is to have all the files and build logs publicy available but protect the build jobs from corruption. The build jobs are being build in a Docker container to prevent any damage to the Jenkins instance. 
 
-2. manage User Roles in Jenkins according to Github Roles
-* View Build (Log, Artefacts, Test-Results): everyone - check
-* Start Build: Everyone with write access to repo - check
-* Iniciate/Edit Build: Admninstrator - check
-* Release Build: Everyone with write acces to repo / <s>Administrator</s> -  check
-
-3. run job for each pull request and commit 
-
-4. use of shared library for jenkins pipeline configuration
-
-5. Protect built by running in a docker container
-
-Open questions
- * jenkins file used from commit - sufficent protection?
+The Jenkins file itself is in the Github repository and is protected from unauthorized change and usage from non trusted users.
 
 
+
+| Attack Scenario     | Protection |
+| -----------      | ----------- |
+| memory overflow     | cache is filled once and then ready only     |
+| server overload  | limitation of docker container and timeout       |
+| sensitive data (keys, passwords, ...)  | protected by jenkins        |
+| unportected access to docker container  | container does not have root rights and file system is not mounted  |
+| corrupt m2 cache  | cache is filled once and then ready only and seperate cache for each repo   |
+| change build coniguration  | protected by jenkins        |

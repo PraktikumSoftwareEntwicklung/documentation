@@ -1,0 +1,11 @@
+---
+---
+@import "hydeout";
+
+.container > * {
+  max-width: none;
+}
+
+#sidebar nav > .icon {
+  display: none;
+}
