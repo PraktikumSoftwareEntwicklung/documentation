@@ -48,3 +48,14 @@ buildPipeline() //example call
 ```
 more information [here](https://jenkins.io/doc/book/pipeline/shared-libraries/)
 
+## Email Notification
+
+In order to send build notifications, you have to configure a SMTP server to send mails. We use a free mail server hosted ad Zoho. In order to use it, you have to specify the following information with `EMAIL` and `PASSWORD` being placeholders:
+* Configure System > Jenkins Location > System Admin e-mail address: EMAIL
+* Configure System > Extended E-mail Notification
+  * SMTP server: smtp.zoho.eu
+  * Use SMTP Authentication: true
+  * User Name: EMAIL
+  * Password: PASSWORD
+  * Use SSL: true
+  * SMTP port: 465
