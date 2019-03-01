@@ -129,3 +129,17 @@ pipeline {
 Within the arguments for the start of the docker container after mapping the docker volume there is a limitation of the memory. In this case the container can only use 4 gigabyte of memory. A limitation of the CPU is also possible with option '-c xx'. With this option is a number provided, by which the relative usage is distributed. If a container has e.g. the option -c 20 and another has the option -c 80, than (if both container working to capacity) the second container can only use 80% of the CPU resources.
 
 In this example file an option is set, to have a timeout for the whole pipeline of 30 minutes. It is also possible to create separate timeouts for the individual stages.
+
+
+### Limit the used memory (on the hard drive)
+
+One possible attack is to fill the hard drive with data until no space is left. To prohibit this action, it is possible to limit the available space of a docker container in the start configuration. The requirement to do this is, that the filesystem (for the container) has to be a "xfs"-filesystem with the 'pquota' mount option. If the requirement is met, a limitation of e.g. 20 gigabyte looks like this:
+
+```Jenkinsfile
+agent {
+    docker {
+        image 'custom_maven:latest'
+        args "... --storage-opt size=20G ..."
+    }
+}
+```
