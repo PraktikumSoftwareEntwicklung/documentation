@@ -1,7 +1,7 @@
 ---
 layout: category
 title: Basic System Setup
-sidebar_sort_order: 1
+sidebar_sort_order: 2
 ---
 
 ## Preparation of Docker Partition
