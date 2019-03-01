@@ -70,7 +70,7 @@ stage('Build_Slave') {
 ...
 ```
 
-If that is done we need to access the saved cache. Since the mounted folder is read-only in the not-master case, we need to copy the content of folder to the location of the actual build (before the build runs). And in the master case we also need to copy the generated cache into the mounted folder (after the build):
+If that is done we need to access the saved cache. Since the mounted folder is read-only in the not-master case, we need to copy the content of the folder to the location of the actual build (before the build runs). And in the master case we also need to copy the generated cache into the mounted folder (after the build):
 
 ```Jenkinsfile
 stage('load_cache') {
