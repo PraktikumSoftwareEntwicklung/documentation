@@ -102,9 +102,9 @@ The integration of the volume into the container is analogous to the variant wit
 -v new_volume:/home/jenkinsbuild/volume_folder
 ```
 
-## Generation of the Jenkinsfile
+## Generation of the Pipeline
 
-Exemplary Jenkinsfile, which uses a docker volume like described above:
+Exemplary Pipeline, which uses a docker volume like described above:
 
 ```shell
 pipeline {
@@ -127,6 +127,6 @@ pipeline {
 }
 ```
 
-Within the arguments for the start of the docker container after mapping the docker volume there is a limitation of the memory set. In this case the container can only use 4 gigabyte of memory. A limitation of the CPU is also possible with option '-c xx'. With this option is a number provided, by which the relative usage is distributed. If a container has e.g. the option -c 20 and another has the option -c 80, than (if both container working to capacity) the second container can only use 80% of the CPU resources.
+Within the arguments for the start of the docker container after mapping the docker volume there is a limitation of the memory. In this case the container can only use 4 gigabyte of memory. A limitation of the CPU is also possible with option '-c xx'. With this option is a number provided, by which the relative usage is distributed. If a container has e.g. the option -c 20 and another has the option -c 80, than (if both container working to capacity) the second container can only use 80% of the CPU resources.
 
 In this example file an option is set, to have a timeout for the whole pipeline of 30 minutes. It is also possible to create separate timeouts for the individual stages.
