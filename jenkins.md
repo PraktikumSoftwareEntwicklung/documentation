@@ -10,6 +10,7 @@ title: Github Jenkins Integration
 * Blue Ocean - for a modern UI
 * Checkstyle - Code Analysis
 * Jacoco - Java Code Coverage Plugin
+* Email Extension - to send Email Notifications
 
 ## Add Github Organization
 
