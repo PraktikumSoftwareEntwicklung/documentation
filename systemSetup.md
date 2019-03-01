@@ -11,7 +11,7 @@ Docker requires an XFS or BTRFS file system partition in order to enforce disk q
 * Execute `mkfs.xfs /dev/xxx1` for the device of the created partition.
 * Use `blkid /dev/xxx1` to get the UUID of the partition.
 * Edit `/etc/fstab` and insert the following line (use the previously determined UUID)
-```
+```shell
 UUID=f50cc38b-038a-4a00-a73a-c4ab2a73a059       /media/docker   xfs     defaults,pquota 0       1
 ```
 * Mount the partition using `mount -a`
@@ -21,7 +21,7 @@ UUID=f50cc38b-038a-4a00-a73a-c4ab2a73a059       /media/docker   xfs     defaults
 * Perform installation according to [setup instructions](https://docs.docker.com/install/)
 * Stop docker daemon
 * Create the file `/etc/docker/daemon.json` with the following content
-```
+```shell
 {
 	"data-root": "/media/docker"
 }
@@ -34,7 +34,7 @@ UUID=f50cc38b-038a-4a00-a73a-c4ab2a73a059       /media/docker   xfs     defaults
 We assume that systemd is running and operational. To support running docker compose files as services, perform the following steps:
 
 * Create a file `/etc/systemd/system/docker-compose@.service` with the following content
-```
+```shell
 [Unit]
 Description=%i service with docker compose
 Requires=docker.service
@@ -71,7 +71,7 @@ Basically, you can use any reverse proxy but we decided for [Traefik](https://tr
 * Decide for a folder holding the configuration files. We will use `/media/data/traefik` in this example.
 * Create an empty file `acme.json` in the configuration folder and set the chmod to 600
 * Create a configuration file `traefik.toml` in the configuration folder containing the following contents (replace domain and email)
-```
+```shell
 logLevel = "INFO"
 defaultEntryPoints = ["https","http"]
 
@@ -107,7 +107,7 @@ onDemand = false
 ```
 * Create a new docker network for web applications by issuing the command `docker network create web`
 * Create the file `docker-compose.yml` in the folder `/etc/docker/compose/traefik` with the following contents
-```
+```shell
 version: '2'
 
 services:
@@ -137,7 +137,7 @@ networks:
 We have to have a custom version of the jenkins image to use docker from within the jenkins container. A manual to create this image is available at the [Jenkins configuration manual](docker). We present the basic configuration here.
 
 * Create the file `docker-compose.yml` in the folder `/etc/docker/compose/traefik` with the following contents
-```
+```shell
 version: '2'
 
 services:
