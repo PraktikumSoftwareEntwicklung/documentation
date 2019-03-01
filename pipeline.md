@@ -88,3 +88,16 @@ stage('save_cache') {
 }
 ```
 
+// ToDo: move this section to the docker documentation
+### Limit the used memory (on the hard drive)
+
+One possible attack is to fill the hard drive with data until no space is left. To prohibit this action, it is possible to limit the available space of a docker container in the start configuration. The requirement to do this is, that the filesystem (for the container) has to be a "xfs"-filesystem with the 'pquota' mount option. If the requirement is met, a limitation of e.g. 20 gigabyte looks like this:
+
+```Jenkinsfile
+agent {
+    docker {
+        image 'custom_maven:latest'
+        args "... --storage-opt size=20G ..."
+    }
+}
+```
