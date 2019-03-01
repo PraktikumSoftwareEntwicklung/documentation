@@ -1,6 +1,7 @@
 ---
 layout: category
 title: Github Configuration
+sidebar_sort_order: 5
 ---
 ## Enabling Oauth Login
 
