@@ -5,9 +5,11 @@ title: Github Jenkins Integration
 
 ## Installed Plugins
 
-* GitHub Authentication plugin (version 0.31)- enabling login with your Github Acount
-* GitHub Integration plugin (version 0.2.4) - enabling the automated CI workflow
-* Blue Ocean (version 1.9.0) - for a modern UI
+* GitHub Authentication plugin- enabling login with your Github Acount
+* GitHub Integration plugin - enabling the automated CI workflow
+* Blue Ocean - for a modern UI
+* Checkstyle - Code Analysis
+* Jacoco - Java Code Coverage Plugin
 
 ## Add Github Organization
 
