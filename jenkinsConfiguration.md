@@ -1,6 +1,6 @@
 ---
 layout: category
-title: Github Jenkins Integration
+title: Jenkins Configuration
 ---
 
 ## Installed Plugins
