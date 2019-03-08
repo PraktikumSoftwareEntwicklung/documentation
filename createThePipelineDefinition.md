@@ -46,7 +46,7 @@ pipeline {
 }
 ```
 
-To make the saved cache persistant, we need a folder outside of the running container on the server. For more information on how to access files outside of a container see ['Setup Dockercontainer & Jenkins'](docker). Here again we differentiate between master and all other builds, which only get read-only access to the folder:
+To make the saved cache persistant, we need a folder outside of the running container on the server. For more information on how to access files outside of a container see ['Setup Dockercontainer & Jenkins'](setupDockercontainerJenkins). Here again we differentiate between master and all other builds, which only get read-only access to the folder:
 
 ```Jenkinsfile
 ...
