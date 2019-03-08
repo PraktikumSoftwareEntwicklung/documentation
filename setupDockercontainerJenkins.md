@@ -144,3 +144,11 @@ agent {
     }
 }
 ```
+## Updating a docker image/container
+
+To update for example the Jenkins container from the custom image follow these steps:
+
+1. Stop the running container `systemctl stop docker-compose@jenkins`
+2. Get a new base image `docker pull jenkins/jenkins:lts`
+3. Build the new custom image `docker build -t new_jenkins .`
+4. Start the container `systemctl start docker-compose@jenkins`
