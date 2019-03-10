@@ -23,8 +23,8 @@ sidebar_sort_order: 15
   3.3. Enable Email Notification and Script Approval  
   3.4. Fill in Details for Publish over SSH
 4. Configure project  
-  4.1. Jenkinsfile  
-  4.2. buildPipeline.groovy
+  4.1. create and configure Jenkinsfile - [see here](jenkinsConfiguration.md)  
+  4.2. use shared Libray - [buildPipeline.groovy](https://github.com/PraktikumSoftwareEntwicklung/JenkinsPipeline/blob/master/vars/buildPipeline.groovy) 
 
 \[1\]:
 * /media/data/jenkins:/var/jenkins_home  
