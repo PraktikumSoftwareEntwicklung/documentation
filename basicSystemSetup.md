@@ -35,6 +35,7 @@ UUID=f50cc38b-038a-4a00-a73a-c4ab2a73a059       /media/docker   xfs     defaults
 We assume that systemd is running and operational. To support running docker compose files as services, perform the following steps:
 
 * Create a file `/etc/systemd/system/docker-compose@.service` with the following content
+
 ```shell
 
 [Unit]
