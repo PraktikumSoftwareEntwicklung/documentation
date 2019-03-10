@@ -152,3 +152,56 @@ To update for example the Jenkins container from the custom image follow these s
 2. Get a new base image `docker pull jenkins/jenkins:lts`
 3. Build the new custom image `docker build -t new_jenkins .`
 4. Start the container `systemctl start docker-compose@jenkins`
+
+## Use of docker network to redirect traffic via a proxy
+
+Since some updatesites (which maven needs, to resolve dependencies) are unreliable, it is useful to use a proxy which redirects specific requests. One solution is "squid", which runs in a separate docker container. This container now must be connected to the maven container which can be done with a docker network. To do this, it is first needed to create a new docker network e.g. with the name "proxy":
+
+```shell
+docker network create --driver bridge proxy
+```
+
+After that we can connect a container with this network. This must be specified at the startup. If squid is started per manual command, it would look like this:
+
+```shell
+docker run -d --name squid --network proxy squid
+```
+
+If two running container are connected via a docker network, they can access each other with the specified name of the container. This name is automatically replaced with the corresponding ip address by docker. Now Maven must be configured to use this proxy. One way is to replace the settings.xml when the container is build from the dockerfile. The corresponding command would look like this:
+
+```dockerfile
+COPY settings.xml /usr/share/maven/conf/settings.xml
+```
+
+And the new settings.xml could look like this:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <proxies>
+    <proxy>
+      <id>eclipseProxy</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>squid</host>
+      <port>3128</port>
+    </proxy>
+  </proxies>
+  <profiles>
+    <profile>
+      <id>eclipseProxy-Profile</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <properties>
+        <http.proxyHost>squid</http.proxyHost>
+        <http.proxyPort>3128</http.proxyPort>
+      </properties>
+    </profile>
+  </profiles>
+</settings>
+```
+
+
