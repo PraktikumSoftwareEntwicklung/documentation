@@ -35,7 +35,8 @@ UUID=f50cc38b-038a-4a00-a73a-c4ab2a73a059       /media/docker   xfs     defaults
 We assume that systemd is running and operational. To support running docker compose files as services, perform the following steps:
 
 * Create a file `/etc/systemd/system/docker-compose@.service` with the following content
-```bash
+```shell
+
 [Unit]
 Description=%i service with docker compose
 Requires=docker.service
@@ -73,6 +74,7 @@ Basically, you can use any reverse proxy but we decided for [Traefik](https://tr
 * Create an empty file `acme.json` in the configuration folder and set the chmod to 600
 * Create a configuration file `traefik.toml` in the configuration folder containing the following contents (replace domain and email)
 ```shell
+
 logLevel = "INFO"
 defaultEntryPoints = ["https","http"]
 
@@ -109,6 +111,7 @@ onDemand = false
 * Create a new docker network for web applications by issuing the command `docker network create web`
 * Create the file `docker-compose.yml` in the folder `/etc/docker/compose/traefik` with the following contents
 ```shell
+
 version: '2'
 
 services:
@@ -139,6 +142,7 @@ We have to have a custom version of the jenkins image to use docker from within 
 
 * Create the file `docker-compose.yml` in the folder `/etc/docker/compose/traefik` with the following contents
 ```shell
+
 version: '2'
 
 services:
