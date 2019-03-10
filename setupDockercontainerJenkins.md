@@ -145,11 +145,11 @@ agent {
 }
 ```
 
-### 3.2 Access buildfiles in the Jenkins container
+### **3.2** Access buildfiles in the Jenkins container
 
 Some jobs are done in the maven container (e.g. do the actual build) and some jobs are done in the jenkins container (e.g. deployment). It is needed to establish some kind of communication between this container, because for e.g. the deployment jenkins need the files which are created during the build in the maven container.
 
-## *4* Updating a docker image/container
+## **4** Updating a docker image/container
 
 To update for example the Jenkins container from the custom image follow these steps:
 
@@ -158,7 +158,7 @@ To update for example the Jenkins container from the custom image follow these s
 3. Build the new custom image `docker build -t new_jenkins .`
 4. Start the container `systemctl start docker-compose@jenkins`
 
-## *5* Use of docker network to redirect traffic via a proxy
+## **5** Use of docker network to redirect traffic via a proxy
 
 Since some updatesites (which maven needs, to resolve dependencies) are unreliable, it is useful to use a proxy which redirects specific requests. One solution is "squid", which runs in a separate docker container. This container now must be connected to the maven container which can be done with a docker network. To do this, it is first needed to create a new docker network e.g. with the name "proxy":
 
