@@ -52,8 +52,8 @@ buildPipeline {
     	sshConfigName = 'updatesites.web.mdsd.tools'
     	absoluteWebserverDir = '/home/deploy/writable'
     	webserverDir = 'simulizar'
-	    updateSiteLocation = 'releng/org.palladiosimulator.simulizar.updatesite/target/repository'
-     skipCodeQuality = 'false'
+	updateSiteLocation = 'releng/org.palladiosimulator.simulizar.updatesite/target/repository'
+        skipCodeQuality = 'false'
 }
 ```
 more information [here](https://jenkins.io/doc/book/pipeline/shared-libraries/)
