@@ -63,6 +63,7 @@ In order to send build notifications, you have to configure a SMTP server to sen
   * Password: PASSWORD
   * Use SSL: true
   * SMTP port: 465
+  * Default Recipients
  
  
  ## Script Approval
