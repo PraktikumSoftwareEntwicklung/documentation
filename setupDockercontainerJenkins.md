@@ -204,4 +204,9 @@ And the new settings.xml could look like this:
 </settings>
 ```
 
+Usefull commands to read the logs of the running squid docker container:
 
+```shell
+docker exec -it squid tail -f /var/log/squid/access.log
+docker exec -it squid cat /var/log/squid/cache.log
+```
