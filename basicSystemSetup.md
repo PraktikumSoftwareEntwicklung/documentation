@@ -37,7 +37,6 @@ We assume that systemd is running and operational. To support running docker com
 * Create a file `/etc/systemd/system/docker-compose@.service` with the following content
 
 ```shell
-
 [Unit]
 Description=%i service with docker compose
 Requires=docker.service
@@ -74,8 +73,8 @@ Basically, you can use any reverse proxy but we decided for [Traefik](https://tr
 * Decide for a folder holding the configuration files. We will use `/media/data/traefik` in this example.
 * Create an empty file `acme.json` in the configuration folder and set the chmod to 600
 * Create a configuration file `traefik.toml` in the configuration folder containing the following contents (replace domain and email)
-```shell
 
+```shell
 logLevel = "INFO"
 defaultEntryPoints = ["https","http"]
 
@@ -111,8 +110,8 @@ onDemand = false
 ```
 * Create a new docker network for web applications by issuing the command `docker network create web`
 * Create the file `docker-compose.yml` in the folder `/etc/docker/compose/traefik` with the following contents
-```shell
 
+```shell
 version: '2'
 
 services:
@@ -142,8 +141,8 @@ networks:
 We have to have a custom version of the jenkins image to use docker from within the jenkins container. A manual to create this image is available at the [Jenkins configuration manual](docker). We present the basic configuration here.
 
 * Create the file `docker-compose.yml` in the folder `/etc/docker/compose/traefik` with the following contents
-```shell
 
+```shell
 version: '2'
 
 services:
