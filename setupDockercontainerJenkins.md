@@ -4,9 +4,9 @@ title: Setup Dockercontainer & Jenkins
 sidebar_sort_order: 3
 ---
 
-## Creation of the dockercontainer for Jenkins
+## 1 Creation of the dockercontainer for Jenkins
 
-### Generation of a new dockerimage from a dockerfile
+### 1.1 Generation of a new dockerimage from a dockerfile
 
 Example dockerfile to create a container, in which Jenkins can run:
 
@@ -41,7 +41,7 @@ docker build -t new_image .
 ```
 
 
-#### Alternative without a dockerfile
+#### 1.1.1 Alternative without a dockerfile
 
 An docker image can be created manually without a dockerfile. In this case create and start a container from an base image (e.g. jenkins/jenkins:lts) and enter this container with the following command:
 
@@ -57,7 +57,7 @@ docker commit eb6323d17d47  new_containername:latest
 
 "eb6323d17d47" is the ID of the running container. All changes inside of the container are discarded when stopping the container, if they are not saved in a new image.
 
-### Start and configuration of Jenkins
+### 1.2 Start and configuration of Jenkins
 
 On starting the docker container, which runs Jenkins, a specific configuration is needed, so that docker container, which are created through Jenkins, stay on the same layer, on which the Jenkins container is. If the configuration is inside a file (e.g. /etc/docker/compose/jenkins/docker-compose.yml), is is needed to add the following entry:
 
@@ -66,7 +66,7 @@ volumes:
     - /var/run/docker.sock:/var/run/docker.sock
 ```
 
-## Access of folders outside of the container
+## 2 Access of folders outside of the container
 
 For saving and loading of e.g. the m2-cache of Maven, it is needed to access folders outside of one's own container. The folders are mapped at the start of the container with the following option:
 
@@ -80,7 +80,7 @@ If this option is provided at the start of the Maven docker container inside of 
 chown -R 1500 /home/jenkinsbuild/.m2
 ```
 
-### Use of Docker volumes
+### 2.1 Use of Docker volumes
 
 As an alternative it is possible to map Docker volumes instead of folders inside of a container. To do this, it is first needed to create such a volume:
 
@@ -102,7 +102,7 @@ The integration of the volume into the container is analogous to the variant wit
 -v new_volume:/home/jenkinsbuild/volume_folder
 ```
 
-## Generation of the Pipeline
+## 3 Generation of the Pipeline
 
 Exemplary Pipeline, which uses a docker volume like described above:
 
@@ -132,7 +132,7 @@ Within the arguments for the start of the docker container after mapping the doc
 In this example file an option is set, to have a timeout for the whole pipeline of 30 minutes. It is also possible to create separate timeouts for the individual stages.
 
 
-### Limit the used memory (on the hard drive)
+### 3.1 Limit the used memory (on the hard drive)
 
 One possible attack is to fill the hard drive with data until no space is left. To prohibit this action, it is possible to limit the available space of a docker container in the start configuration. The requirement to do this is, that the filesystem (for the container) has to be a "xfs"-filesystem with the 'pquota' mount option. If the requirement is met, a limitation of e.g. 20 gigabyte looks like this:
 
@@ -144,7 +144,12 @@ agent {
     }
 }
 ```
-## Updating a docker image/container
+
+### 3.2 Access buildfiles in the Jenkins container
+
+Some jobs are done in the maven container (e.g. do the actual build) and some jobs are done in the jenkins container (e.g. deployment). It is needed to establish some kind of communication between this container, because for e.g. the deployment jenkins need the files which are created during the build in the maven container.
+
+## *4* Updating a docker image/container
 
 To update for example the Jenkins container from the custom image follow these steps:
 
@@ -153,7 +158,7 @@ To update for example the Jenkins container from the custom image follow these s
 3. Build the new custom image `docker build -t new_jenkins .`
 4. Start the container `systemctl start docker-compose@jenkins`
 
-## Use of docker network to redirect traffic via a proxy
+## *5* Use of docker network to redirect traffic via a proxy
 
 Since some updatesites (which maven needs, to resolve dependencies) are unreliable, it is useful to use a proxy which redirects specific requests. One solution is "squid", which runs in a separate docker container. This container now must be connected to the maven container which can be done with a docker network. To do this, it is first needed to create a new docker network e.g. with the name "proxy":
 
