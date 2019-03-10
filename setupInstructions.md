@@ -16,7 +16,13 @@ sidebar_sort_order: 15
   2.3. Create folder and set permissions for user 1500 for the cache and the buildfiles (set quota if needed)  
   2.4. Add volume mounts for the jenkins container \[1\]  
   2.5. Other jenkins container config adaptions \[2\]  
-  2.6. Start container
+  2.6. Start container  
+3. Configure [Jenkins](jenkinsConfiguration.md) and [Github](githubConfiguration.md)  
+  3.1. Set configuration  
+  3.2. Install needed plugins  
+4. Configure project  
+  4.1. Jenkinsfile  
+  4.2. buildPipeline.groovy
 
 \[1\]:
 * /media/data/jenkins:/var/jenkins_home  
