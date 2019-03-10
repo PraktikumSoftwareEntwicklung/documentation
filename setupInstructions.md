@@ -18,8 +18,9 @@ sidebar_sort_order: 15
   2.5. Other jenkins container config adaptions \[2\]  
   2.6. Start container  
 3. Configure [Jenkins](jenkinsConfiguration.md) and [Github](githubConfiguration.md)  
-  3.1. Set configuration  
-  3.2. Install needed plugins  
+  3.1. Set configuration for Github Projects and Webhooks
+  3.2. Install needed plugins
+  3.3. Enable Email Notification and Script Approval
 4. Configure project  
   4.1. Jenkinsfile  
   4.2. buildPipeline.groovy
