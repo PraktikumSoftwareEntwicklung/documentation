@@ -147,7 +147,8 @@ agent {
 
 ### 3.2 Access buildfiles in the Jenkins container
 
-Some jobs are done in the maven container (e.g. do the actual build) and some jobs are done in the jenkins container (e.g. deployment). It is needed to establish some kind of communication between this container, because for e.g. the deployment jenkins needs the files which are created during the build in the maven container. One solution is to mount a folder in both containers like described in chapter [2](setupDockercontainerJenkins#2-access-of-folders-outside-of-the-container).
+Some jobs are done in the maven container (e.g. do the actual build) and some jobs are done in the jenkins container (e.g. deployment). It is needed to establish some kind of communication between this container, because for e.g. the deployment jenkins needs the files which are created during the build in the maven container. One solution is to mount a folder in both containers like described in chapter [2](setupDockercontainerJenkins#2-access-of-folders-outside-of-the-container). For security reasons this folder should be a own partition and/or has a disc quota set to limit the available space.
+Jenkins should create a new subfolder with a name which is unique for each build so different builds cannot interfere with each other. This means that the name should contain the project name, branch name and the build id. At the start of the maven container only this subfolder should be mounted in! The only possible interference between two concurrent builds is, when one evil build tries to use all available space and the other (normal) build tries to write something at the same time. Both builds could fail in this case and the normal build has to be restarted again.
 
 ## 4 Use of docker network to redirect traffic via a proxy
 
