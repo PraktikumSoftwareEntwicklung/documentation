@@ -1,7 +1,7 @@
 ---
 layout: category
 title: Create the Pipeline Definition
-sidebar_sort_order: 6
+sidebar_sort_order: 60
 ---
 
 ## Definitions with security background
