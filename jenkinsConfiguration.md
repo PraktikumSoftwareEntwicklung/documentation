@@ -1,7 +1,7 @@
 ---
 layout: category
 title: Jenkins Configuration
-sidebar_sort_order: 4
+sidebar_sort_order: 40
 ---
 
 ## Installed Plugins
