@@ -149,7 +149,7 @@ agent {
 
 Some jobs are done in the maven container (e.g. do the actual build) and some jobs are done in the jenkins container (e.g. deployment). It is needed to establish some kind of communication between this container, because for e.g. the deployment jenkins needs the files which are created during the build in the maven container. One solution is to mount a folder in both containers like described in chapter [2](setupDockercontainerJenkins#2-access-of-folders-outside-of-the-container). For security reasons this folder should be a own partition and/or has a disc quota set to limit the available space.
 
-To set a quota on a folder (e.g. /media/docker2) on a xfs partition use the following commands:
+To set a quota on a folder (e.g. /media/docker2) on a xfs partition use the following commands (the third is executed inside of the modified folder):
 ```shell
 echo 42:/media/docker2 >> /etc/projects
 echo buildfiles:42 >> /etc/projid
