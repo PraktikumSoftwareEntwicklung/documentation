@@ -44,11 +44,17 @@ If you want to use a shared Library for your Project go in your Project to confi
 
 ![Screenshot](img/pipelineLibraries.PNG)
 
-To use is simply put the library in your jenkinsfile.
+To use is simply put the library in your jenkinsfile. The Skip Code Quality Step is optional. All other fields are mandatory.
 
 ```groovy
 @Library('SharedLibrary') _
-buildPipeline() //example call
+buildPipeline {
+    	sshConfigName = 'updatesites.web.mdsd.tools'
+    	absoluteWebserverDir = '/home/deploy/writable'
+    	webserverDir = 'simulizar'
+	    updateSiteLocation = 'releng/org.palladiosimulator.simulizar.updatesite/target/repository'
+     skipCodeQuality = 'false'
+}
 ```
 more information [here](https://jenkins.io/doc/book/pipeline/shared-libraries/)
 
