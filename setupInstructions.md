@@ -6,7 +6,7 @@ sidebar_sort_order: 15
 
 ## Setup instructions
 
-1 Basic setup like described in [Basic System Setup](basicSystemSetup.md)  
+1. Basic setup like described in [Basic System Setup](basicSystemSetup.md)  
   1.1. Create partitions  
   1.2. Install docker  
   1.3. Configure container (after step 2)   
@@ -19,6 +19,6 @@ sidebar_sort_order: 15
     2.4.2. /var/run/docker.sock:/var/run/docker.sock  
     2.4.3. /media/docker2:/var/buildfiles  
   2.5. Other jenkins container config adaptions:  
-    * User set to 1500  
-    * New image name  
+    2.5.1. User set to 1500  
+    2.5.2 New image name  
   2.6. Start container
