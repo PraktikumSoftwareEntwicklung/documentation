@@ -18,7 +18,7 @@ sidebar_sort_order: 15
     * /media/data/jenkins:/var/jenkins_home  
     * /var/run/docker.sock:/var/run/docker.sock  
     * /media/docker2:/var/buildfiles  
-  2.5. Other jenkins container config adaptions:  
+  2.5. Other jenkins container config adaptions:
     * User set to 1500  
     * New image name  
   2.6. Start container
