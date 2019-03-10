@@ -6,7 +6,7 @@ sidebar_sort_order: 3
 
 ## 1. Creation of the dockercontainer for Jenkins
 
-### 1.1. Generation of a new dockerimage from a dockerfile
+### 1.1 Generation of a new dockerimage from a dockerfile
 
 Example dockerfile to create a container, in which Jenkins can run:
 
@@ -41,7 +41,7 @@ docker build -t new_image .
 ```
 
 
-#### 1.1.1. Alternative without a dockerfile
+#### 1.1.1 Alternative without a dockerfile
 
 An docker image can be created manually without a dockerfile. In this case create and start a container from an base image (e.g. jenkins/jenkins:lts) and enter this container with the following command:
 
@@ -57,7 +57,7 @@ docker commit eb6323d17d47  new_containername:latest
 
 "eb6323d17d47" is the ID of the running container. All changes inside of the container are discarded when stopping the container, if they are not saved in a new image.
 
-### 1.2. Start and configuration of Jenkins
+### 1.2 Start and configuration of Jenkins
 
 On starting the docker container, which runs Jenkins, a specific configuration is needed, so that docker container, which are created through Jenkins, stay on the same layer, on which the Jenkins container is. If the configuration is inside a file (e.g. /etc/docker/compose/jenkins/docker-compose.yml), is is needed to add the following entry:
 
@@ -80,7 +80,7 @@ If this option is provided at the start of the Maven docker container inside of 
 chown -R 1500 /home/jenkinsbuild/.m2
 ```
 
-### 2.1. Use of Docker volumes
+### 2.1 Use of Docker volumes
 
 As an alternative it is possible to map Docker volumes instead of folders inside of a container. To do this, it is first needed to create such a volume:
 
@@ -132,7 +132,7 @@ Within the arguments for the start of the docker container after mapping the doc
 In this example file an option is set, to have a timeout for the whole pipeline of 30 minutes. It is also possible to create separate timeouts for the individual stages.
 
 
-### 3.1. Limit the used memory (on the hard drive)
+### 3.1 Limit the used memory (on the hard drive)
 
 One possible attack is to fill the hard drive with data until no space is left. To prohibit this action, it is possible to limit the available space of a docker container in the start configuration. The requirement to do this is, that the filesystem (for the container) has to be a "xfs"-filesystem with the 'pquota' mount option. If the requirement is met, a limitation of e.g. 20 gigabyte looks like this:
 
@@ -145,7 +145,7 @@ agent {
 }
 ```
 
-### 3.2. Access buildfiles in the Jenkins container
+### 3.2 Access buildfiles in the Jenkins container
 
 Some jobs are done in the maven container (e.g. do the actual build) and some jobs are done in the jenkins container (e.g. deployment). It is needed to establish some kind of communication between this container, because for e.g. the deployment jenkins needs the files which are created during the build in the maven container. One solution is to mount a folder in both containers like described in chapter [2](setupDockercontainerJenkins#2.-access-of-folders-outside-of-the-container). For security reasons this folder should be a own partition and/or has a disc quota set to limit the available space.
 
