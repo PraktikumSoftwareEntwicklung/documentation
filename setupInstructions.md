@@ -20,7 +20,8 @@ sidebar_sort_order: 15
 3. Configure [Jenkins](jenkinsConfiguration.md) and [Github](githubConfiguration.md)  
   3.1. Set configuration for Github Projects and Webhooks  
   3.2. Install needed plugins  
-  3.3. Enable Email Notification and Script Approval
+  3.3. Enable Email Notification and Script Approval  
+  3.4. Fill in Details for Publish over SSH
 4. Configure project  
   4.1. Jenkinsfile  
   4.2. buildPipeline.groovy
