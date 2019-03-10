@@ -13,7 +13,7 @@ sidebar_sort_order: 15
 2. Create docker container like described in [Setup Dockercontainer & Jenkins](setupDockercontainerJenkins.md)  
   2.1. Create docker images from the provided dockerfiles  
   2.2. Create docker network for use of proxy  
-  2.3. Create folder and set permissions for user 1500 for the cache and the buildfiles  
+  2.3. Create folder and set permissions for user 1500 for the cache and the buildfiles (set quota if needed)  
   2.4. Add volume mounts for the jenkins container \[1\]  
   2.5. Other jenkins container config adaptions \[2\]  
   2.6. Start container
