@@ -1,7 +1,7 @@
 ---
 layout: category
 title: Setup Dockercontainer & Jenkins
-sidebar_sort_order: 3
+sidebar_sort_order: 30
 ---
 
 ## 1. Creation of the dockercontainer for Jenkins
