@@ -75,7 +75,7 @@ In order to send build notifications, you have to configure a SMTP server to sen
   * Default Recipients
  
  
- ## Script Approval
+## Script Approval
  
  To get the Email Adress of the Jenkins Users in the Pipeline the following Scripts need to be approved in Manage Jenkins > In-process Script Approval:
  
