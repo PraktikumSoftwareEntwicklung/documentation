@@ -140,6 +140,7 @@ networks:
 
 We have to have a custom version of the jenkins image to use docker from within the jenkins container. A manual to create this image is available at the [Jenkins configuration manual](setupDockercontainerJenkins). We present the basic configuration here.
 
+* Create the folder `/media/data/jenkins` and execute the command `chown 1500:1500 /media/data/jenkins/` to make it writable
 * Create the file `docker-compose.yml` in the folder `/etc/docker/compose/jenkins` with the following contents
 
 ```shell
