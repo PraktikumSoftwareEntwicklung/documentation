@@ -138,9 +138,9 @@ networks:
 
 ## Setup Jenkings
 
-We have to have a custom version of the jenkins image to use docker from within the jenkins container. A manual to create this image is available at the [Jenkins configuration manual](docker). We present the basic configuration here.
+We have to have a custom version of the jenkins image to use docker from within the jenkins container. A manual to create this image is available at the [Jenkins configuration manual](setupDockercontainerJenkins). We present the basic configuration here.
 
-* Create the file `docker-compose.yml` in the folder `/etc/docker/compose/traefik` with the following contents
+* Create the file `docker-compose.yml` in the folder `/etc/docker/compose/jenkins` with the following contents
 
 ```shell
 version: '2'
