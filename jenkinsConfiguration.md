@@ -19,7 +19,10 @@ Go to new Item > Github Organization and type in a name. Afterwards fill in all 
 
 ## Setup Github Server
 
-Go to Manage Jenkins > Configure Systema and add the required Github Server. As Credentials put in a generated access token from a Github User which is an Admin. This is necessary in order to be able to manage the webhooks.
+Go to Manage Jenkins > Configure Systema and add the required Github Server. As Credentials put in a generated access token from a Github User which is an Admin. This is necessary in order to be able to manage the webhooks. If you create the access token make sure the following is selected and save the access token as secret text.
+* admin:repo_hook - for managing hooks (read, write and delete old ones)
+* repo - to see private repos
+* repo:status - to manipulate commit statuses
 
 ![Screenshot](img/githubServer.PNG)
 
