@@ -12,6 +12,7 @@ sidebar_sort_order: 40
 * Checkstyle - Code Analysis
 * Jacoco - Java Code Coverage Plugin
 * Email Extension - to send Email Notifications
+* Publish Over SSH 
 
 ## Add Github Organization
 
