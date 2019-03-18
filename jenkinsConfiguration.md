@@ -38,7 +38,7 @@ more Details [here](https://wiki.jenkins.io/display/JENKINS/Github+OAuth+Plugin)
 
 ## Project Settings
 
-In your Project go to Configure and the following settings for branch and pull request Detection.
+In your Project go to Configure and the following settings for branch and pull request Detection. Make sure you select use commit author in changelog.
 
 ![Screenshot](img/branchDetection.PNG)
 
